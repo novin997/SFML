@@ -2,17 +2,21 @@ cmake_minimum_required(VERSION 3.20)
 
 project(CMakeSFMLProject LANGUAGES CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.x)
+    GIT_TAG 3.0.0-rc.1)
 FetchContent_MakeAvailable(SFML)
 
+# find_package(SFML 3 REQUIRED COMPONENTS Graphics Audio Network)
+
 add_executable(CMakeSFMLProject src/main.cpp)
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
+target_link_libraries(CMakeSFMLProject PRIVATE SFML::Graphics SFML::Audio SFML::Network)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_20)
 
 if(WIN32)
