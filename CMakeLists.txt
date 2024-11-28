@@ -15,7 +15,9 @@ FetchContent_MakeAvailable(SFML)
 
 # find_package(SFML 3 REQUIRED COMPONENTS Graphics Audio Network)
 
-add_executable(CMakeSFMLProject src/main.cpp)
+add_executable(CMakeSFMLProject src/main.cpp include/sprite.hpp)
+
+target_include_directories(CMakeSFMLProject PRIVATE include)
 target_link_libraries(CMakeSFMLProject PRIVATE SFML::Graphics SFML::Audio SFML::Network)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_20)
 
